@@ -1,3 +1,5 @@
+import { Result,Ok,Err } from "./result.ts";
+
 export class Option<T> {
     private value!: T;
     constructor(value: T) {
@@ -52,6 +54,14 @@ export class Option<T> {
 
     public map_or_else<U>(f: () => U, g: (value: T) => U): U {
         return this.is_none() ? f() : g(this.value);
+    }
+
+    public ok_or<E>(err: E): Result<T, E> {
+        return this.is_some() ? Ok(this.value) : Err(err);
+    }
+
+    public ok_or_else<E>(f: () => E): Result<T, E> {
+        return this.is_some() ? Ok(this.value) : Err(f());
     }
 
     public and<U>(optb: Option<U>): Option<U> {
