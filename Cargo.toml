@@ -1,5 +1,5 @@
 [package]
 name = "rust_ts"
 version = "0.1.0"
-authors = ["Bavfalcon9"]
+authors = ["Bavfalcon9", "sylvrs"]
 edition = "2021"
